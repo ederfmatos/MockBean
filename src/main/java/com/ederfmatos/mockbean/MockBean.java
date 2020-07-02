@@ -36,7 +36,11 @@ public class MockBean<B> {
     private void createBean() {
         try {
             Constructor<B> constructor = refClass.getDeclaredConstructor();
+            constructor.setAccessible(true);
+
             bean = constructor.newInstance();
+            
+            constructor.setAccessible(false);
 
             Field[] fields = refClass.getDeclaredFields();
 
