@@ -1,5 +1,6 @@
 package com.ederfmatos.mockbean.random;
 
+import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
 import com.ederfmatos.mockbean.random.types.MockBeanRandomBoolean;
 import com.ederfmatos.mockbean.random.types.MockBeanRandomInteger;
 import com.ederfmatos.mockbean.random.types.MockBeanRandomLocalDate;
@@ -8,6 +9,7 @@ import com.ederfmatos.mockbean.random.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -32,7 +34,7 @@ public enum MockBeanRandomValueEnum {
         for (MockBeanRandomValueEnum value : MockBeanRandomValueEnum.values()) {
             if (fieldClass.isEnum()) {
                 Object[] enumConstants = fieldClass.getEnumConstants();
-                return List.of(enumConstants).get(new Random().nextInt(enumConstants.length));
+                return Arrays.asList(enumConstants).get(MockBeanRandomFactory.get().nextInt(enumConstants.length));
             }
 
             if (fieldClass.isPrimitive()) {
