@@ -1,3 +1,4 @@
+
 # MockBean
   
   
@@ -66,7 +67,49 @@ dependencies {
 
 ## Utilização
 
+Para exemplificação utilizaremos a seguinte classe como bean:
 
+``` Java
+
+public class Cliente {
+    private Long id;
+    private String name;
+    private LocalDate createdAt;
+    private String phoneNumber;
+    private String email;
+    private String password;
+}
+
+```
+
+Com essa biblioteca temos acesso à 2 métodos de manipulação afim de obter uma instância da classe.
+
+``` Java
+// Retorna uma instância da classe.
+MockBean.mockBean(Class<T>);
+
+// Idêntico ao método acima, criado para facilitar a importação estática.
+MockBean.mock(Class<T>);
+```
+
+Com uma instância da classe em mãos temos acesso à outros métodos da classe:
+
+``` Java
+// With -> Recebe 2 parâmetros, o nome do atributo da classe, e um valor para ser colocado nesse atributo.
+MockBean.mockBean(Cliente.class)
+	.with("name", "Bill Gates");
+
+// Without -> Recebe o nome de um atributo que deseja ter o valor padrão de acordo com o tipo.
+MockBean.mockBean(Cliente.class)
+	.without("email");
+
+// Build -> Devolve uma instância da classe de acordo com as configurações passadas nos métodos anteriores
+Cliente cliente = MockBean.mockBean(Cliente.class)
+	.without("id")
+	.with("name", "Bill Gates")
+	.with("email", "bill@gates.com")
+	.build();
+```
 
 ## Tipos de dados
 
