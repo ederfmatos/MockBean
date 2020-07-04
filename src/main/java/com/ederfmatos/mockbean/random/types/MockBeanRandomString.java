@@ -4,7 +4,6 @@ import com.ederfmatos.mockbean.random.MockBeanRandomValueInterface;
 import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
 
 import java.lang.reflect.Field;
-import java.util.Random;
 
 public class MockBeanRandomString implements MockBeanRandomValueInterface<String> {
 
@@ -12,7 +11,7 @@ public class MockBeanRandomString implements MockBeanRandomValueInterface<String
 
     @Override
     public String getRandomValue(Field field) {
-        int count = new Random().nextInt(25) + 10;
+        int count = MockBeanRandomFactory.get().nextInt(25) + 10;
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < count; ++i) {

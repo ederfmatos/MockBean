@@ -121,6 +121,6 @@ Esses são os tipos de dados cobertos pela biblioteca:
  - [x] Float
  - [x] LocalDate
  - [x] Enums
- - [ ] Long
- - [ ] Date
- - [ ] Char
+ - [X] Long
+ - [X] Date
+ - [X] Char
