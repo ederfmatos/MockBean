@@ -32,7 +32,7 @@ public class MockBean<B> {
 
     public MockBean<B> without(String... names) {
         for (String name : names) {
-            fieldValueMap.put(name, null);
+            with(name, null);
         }
 
         return this;
