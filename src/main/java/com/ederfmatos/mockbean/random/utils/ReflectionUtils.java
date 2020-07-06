@@ -1,33 +1,25 @@
 package com.ederfmatos.mockbean.random.utils;
 
+import java.util.Map;
+
 public final class ReflectionUtils {
+
+    private static final Map<Class<?>, Class<?>> wrapperPrimitiveClass = Map.of(
+            char.class, Character.class,
+            int.class, Integer.class,
+            boolean.class, Boolean.class,
+            byte.class, Byte.class,
+            double.class, Double.class,
+            float.class, Float.class,
+            long.class, Long.class,
+            short.class, Short.class
+    );
 
     private ReflectionUtils() {
     }
 
     public static Class<?> getWrapperClassFromPrimitive(Class<?> primitiveClass) {
-        if (primitiveClass == char.class)
-            return Character.class;
-
-        if (primitiveClass == int.class)
-            return Integer.class;
-
-        if (primitiveClass == boolean.class)
-            return Boolean.class;
-
-        if (primitiveClass == byte.class)
-            return Byte.class;
-
-        if (primitiveClass == double.class)
-            return Double.class;
-
-        if (primitiveClass == float.class)
-            return Float.class;
-
-        if (primitiveClass == long.class)
-            return Long.class;
-
-        return Short.class;
+        return wrapperPrimitiveClass.get(primitiveClass);
     }
 
 }

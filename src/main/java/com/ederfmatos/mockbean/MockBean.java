@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MockBean<B> {
@@ -14,7 +16,6 @@ public class MockBean<B> {
     private static final Logger LOG = LoggerFactory.getLogger(MockBean.class);
 
     private final Class<B> refClass;
-    private B bean;
     private final Map<String, Object> fieldValueMap;
 
     MockBean(Class<B> refClass) {
@@ -42,7 +43,7 @@ public class MockBean<B> {
         Field field = null;
 
         try {
-            field = bean.getClass().getDeclaredField(name);
+            field = refClass.getDeclaredField(name);
             fieldValueMap.put(name, value);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
@@ -56,16 +57,25 @@ public class MockBean<B> {
     }
 
     public B build() {
-        createBean();
-        return bean;
+        return createBean();
     }
 
-    private void createBean() {
+    public List<B> build(int size) {
+        List<B> beans = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            beans.add(createBean());
+        }
+
+        return beans;
+    }
+
+    private B createBean() {
         try {
             Constructor<B> constructor = refClass.getDeclaredConstructor();
             constructor.setAccessible(true);
 
-            bean = constructor.newInstance();
+            B bean = constructor.newInstance();
 
             constructor.setAccessible(false);
 
@@ -93,8 +103,11 @@ public class MockBean<B> {
                     field.setAccessible(false);
                 }
             }
+
+            return bean;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 
