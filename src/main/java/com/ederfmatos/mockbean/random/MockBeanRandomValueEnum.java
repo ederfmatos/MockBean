@@ -1,5 +1,6 @@
 package com.ederfmatos.mockbean.random;
 
+import com.ederfmatos.mockbean.MockBean;
 import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
 import com.ederfmatos.mockbean.random.types.*;
 import com.ederfmatos.mockbean.random.utils.ReflectionUtils;
@@ -48,7 +49,7 @@ public enum MockBeanRandomValueEnum {
             }
         }
 
-        return null;
+        return MockBean.mock(fieldClass).build();
     }
 
     public Class<?> getRefClass() {

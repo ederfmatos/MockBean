@@ -47,6 +47,7 @@ public class MockBean<B> {
             fieldValueMap.put(name, value);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
+            throw new RuntimeException(String.format("Field \"%s\" not found", name));
         } finally {
             if (field != null) {
                 field.setAccessible(false);
@@ -83,17 +84,18 @@ public class MockBean<B> {
 
             for (Field field : fields) {
                 try {
+                    String name = field.getName();
                     Object value;
 
-                    if (fieldValueMap.containsKey(field.getName())) {
-                        value = fieldValueMap.get(field.getName());
+                    if (fieldValueMap.containsKey(name)) {
+                        value = fieldValueMap.get(name);
 
                         if (value == null) continue;
                     } else {
                         value = MockBeanRandomValueEnum.getRandomValueFromField(field);
                     }
 
-                    LOG.debug("Generated value {} for field {} of type {}", value, field.getName(), field.getType().getSimpleName());
+                    LOG.debug("Generated value {} for field {} of type {}", value, name, field.getType().getSimpleName());
 
                     field.setAccessible(true);
                     field.set(bean, value);

@@ -5,6 +5,16 @@ plugins {
 group 'com.ederfmatos'
 version '1.0-SNAPSHOT'
 
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -12,6 +22,12 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
+    testCompile("org.assertj:assertj-core:3.11.1")
+}
+
+test {
+    useJUnitPlatform()
 }
