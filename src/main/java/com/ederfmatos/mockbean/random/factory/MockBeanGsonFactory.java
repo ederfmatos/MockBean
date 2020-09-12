@@ -1,21 +1,21 @@
 package com.ederfmatos.mockbean.random.factory;
 
-import java.util.Random;
+import com.google.gson.Gson;
 
-public final class MockBeanRandomFactory {
+public final class MockBeanGsonFactory {
 
-    private static Random random;
+    private static Gson instance;
 
-    private MockBeanRandomFactory() {
+    private MockBeanGsonFactory() {
         throw new RuntimeException("It is not possible to create an instance of this class");
     }
 
-    public static Random get() {
-        if (random == null) {
-            random = new Random();
+    public static Gson get() {
+        if (instance == null) {
+            instance = new Gson();
         }
 
-        return random;
+        return instance;
     }
 
 }
