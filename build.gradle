@@ -31,4 +31,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    afterSuite { suite, result ->
+        result.exception?.printStackTrace()
+    }
 }
