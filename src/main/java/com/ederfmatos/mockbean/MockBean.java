@@ -1,8 +1,7 @@
 package com.ederfmatos.mockbean;
 
 import com.ederfmatos.mockbean.random.MockBeanRandomValueEnum;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.ederfmatos.mockbean.random.factory.MockBeanGsonFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -10,10 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class MockBean<B> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MockBean.class);
+    private static final Logger LOGGER = Logger.getLogger(MockBean.class.getName());
 
     private final Class<B> refClass;
     private final Map<String, Object> fieldValueMap;
@@ -46,7 +46,6 @@ public class MockBean<B> {
             field = refClass.getDeclaredField(name);
             fieldValueMap.put(name, value);
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
             throw new RuntimeException(String.format("Field \"%s\" not found", name));
         } finally {
             if (field != null) {
@@ -69,6 +68,14 @@ public class MockBean<B> {
         }
 
         return beans;
+    }
+
+    public String json() {
+        return MockBeanGsonFactory.get().toJson(build());
+    }
+
+    public String json(int size) {
+        return MockBeanGsonFactory.get().toJson(build(size));
     }
 
     private B createBean() {
@@ -95,7 +102,7 @@ public class MockBean<B> {
                         value = MockBeanRandomValueEnum.getRandomValueFromField(field);
                     }
 
-                    LOG.debug("Generated value {} for field {} of type {}", value, name, field.getType().getSimpleName());
+                    LOGGER.info(String.format("Generated value \"%s\" for field \"%s\" of type \"%s\"", value, name, field.getType().getSimpleName()));
 
                     field.setAccessible(true);
                     field.set(bean, value);
