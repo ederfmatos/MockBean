@@ -21,17 +21,16 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'javax.validation:validation-api:2.0.1.Final'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     testCompile("org.assertj:assertj-core:3.11.1")
     implementation 'com.google.code.gson:gson:2.8.5'
+    testImplementation('junit:junit:4.13')
+    testCompileOnly 'junit:junit:4.12'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.3.1'
 }
 
 test {
     useJUnitPlatform()
-    afterSuite { suite, result ->
-        result.exception?.printStackTrace()
-    }
 }
