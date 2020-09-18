@@ -33,7 +33,7 @@ public class MockBeanRandomList extends MockBeanRandomValueAbstract<Iterable> {
     private Collector getCollectorFromType(ParameterizedType type) {
         Type rawType = type.getRawType();
 
-        if (rawType.getTypeName().equals(Set.class.getSimpleName())) {
+        if (rawType.getTypeName().equals(Set.class.getTypeName())) {
             return Collectors.toSet();
         }
 
@@ -42,7 +42,7 @@ public class MockBeanRandomList extends MockBeanRandomValueAbstract<Iterable> {
 
     @Override
     public boolean isInstanceOf(Class<?> oneClass) {
-        return Collection.class.isAssignableFrom(oneClass);
+        return getRefClass().isAssignableFrom(oneClass);
     }
 
     @Override
