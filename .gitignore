@@ -14,6 +14,7 @@ target/
 .springBeans
 .sts4-cache
 
+.gradle
 ### IntelliJ IDEA ###
 .idea
 *.iws
