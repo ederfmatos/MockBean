@@ -1,4 +1,4 @@
-package com.ederfmatos.mockbean.bean;
+package com.ederfmatos.mockbean.bean.integer;
 
 import java.time.LocalDate;
 import java.util.Date;

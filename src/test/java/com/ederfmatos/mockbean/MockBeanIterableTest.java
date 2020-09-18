@@ -1,13 +1,13 @@
 package com.ederfmatos.mockbean;
 
-import com.ederfmatos.mockbean.bean.TestClassList;
-import com.ederfmatos.mockbean.bean.TestClassSet;
+import com.ederfmatos.mockbean.bean.integer.TestClassList;
+import com.ederfmatos.mockbean.bean.integer.TestClassSet;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MockBeanListTest {
+public class MockBeanIterableTest {
 
     @Test
     @DisplayName("Deve realizar um mock de listas")
