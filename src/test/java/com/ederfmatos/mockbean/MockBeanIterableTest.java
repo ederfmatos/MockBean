@@ -1,7 +1,7 @@
 package com.ederfmatos.mockbean;
 
-import com.ederfmatos.mockbean.bean.integer.TestClassList;
-import com.ederfmatos.mockbean.bean.integer.TestClassSet;
+import com.ederfmatos.mockbean.bean.iterable.TestClassList;
+import com.ederfmatos.mockbean.bean.iterable.TestClassSet;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +24,7 @@ public class MockBeanIterableTest {
         assertThat(classeDeTest.getLocalDates()).isNotEmpty();
         assertThat(classeDeTest.getLongs()).isNotEmpty();
         assertThat(classeDeTest.getDates()).isNotEmpty();
+        assertThat(classeDeTest.getStatusEnums()).isNotEmpty();
     }
 
     @Test
@@ -41,6 +42,7 @@ public class MockBeanIterableTest {
         assertThat(classeDeTest.getLocalDates()).isNotEmpty();
         assertThat(classeDeTest.getLongs()).isNotEmpty();
         assertThat(classeDeTest.getDates()).isNotEmpty();
+        assertThat(classeDeTest.getStatusEnums()).isNotEmpty();
     }
 
 }

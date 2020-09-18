@@ -20,9 +20,6 @@ public final class ReflectionUtils {
         wrapperPrimitiveClass.put(short.class, Short.class);
     }
 
-    private ReflectionUtils() {
-    }
-
     public static Class<?> getWrapperClassFromPrimitive(Class<?> primitiveClass) {
         return wrapperPrimitiveClass.get(primitiveClass);
     }

@@ -1,4 +1,6 @@
-package com.ederfmatos.mockbean.bean.integer;
+package com.ederfmatos.mockbean.bean.iterable;
+
+import com.ederfmatos.mockbean.bean.enumeration.StatusEnum;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,6 +17,7 @@ public class TestClassList {
     private List<Long> longs;
     private List<LocalDate> localDates;
     private List<Character> characters;
+    private List<StatusEnum> statusEnums;
 
     public List<String> getStrings() {
         return strings;
@@ -50,5 +53,9 @@ public class TestClassList {
 
     public List<Character> getCharacters() {
         return characters;
+    }
+
+    public List<StatusEnum> getStatusEnums() {
+        return statusEnums;
     }
 }

@@ -1,4 +1,4 @@
-package com.ederfmatos.mockbean.bean.iterable;
+package com.ederfmatos.mockbean.bean.integer;
 
 public class TestClassInteger {
 
