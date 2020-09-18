@@ -5,29 +5,49 @@ import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
-import java.util.List;
+import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class MockBeanRandomList extends MockBeanRandomValueAbstract<List> {
+public class MockBeanRandomList extends MockBeanRandomValueAbstract<Iterable> {
 
     @Override
-    public List<?> getRandomValue(Field field) {
-        int size = MockBeanRandomFactory.get().nextInt(15);
+    public Iterable getRandomValue(Field field) {
+        int size = MockBeanRandomFactory.get().nextInt(15) + 2;
 
-        ParameterizedType integerListType = (ParameterizedType) field.getGenericType();
-        Class<?> fieldType = (Class<?>) integerListType.getActualTypeArguments()[0];
+        ParameterizedType type = (ParameterizedType) field.getGenericType();
+        Class<?> fieldType = (Class<?>) type.getActualTypeArguments()[0];
+
+        Collector<Object, Object, Iterable> collector = this.getCollectorFromType(type);
 
         return IntStream.range(1, size)
                 .mapToObj(n -> getValueFromClass(fieldType))
                 .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+                .collect(collector);
+    }
+
+    private Collector getCollectorFromType(ParameterizedType type) {
+        Type rawType = type.getRawType();
+
+        if (rawType.getTypeName().equals(Set.class.getSimpleName())) {
+            return Collectors.toSet();
+        }
+
+        return Collectors.toList();
     }
 
     @Override
-    protected Class<List> getRefClass() {
-        return List.class;
+    public boolean isInstanceOf(Class<?> oneClass) {
+        return Collection.class.isAssignableFrom(oneClass);
+    }
+
+    @Override
+    protected Class<Iterable> getRefClass() {
+        return Iterable.class;
     }
 
 }
