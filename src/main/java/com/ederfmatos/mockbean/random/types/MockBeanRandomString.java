@@ -1,11 +1,11 @@
 package com.ederfmatos.mockbean.random.types;
 
-import com.ederfmatos.mockbean.random.MockBeanRandomValueInterface;
+import com.ederfmatos.mockbean.random.MockBeanRandomValueAbstract;
 import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
 
 import java.lang.reflect.Field;
 
-public class MockBeanRandomString implements MockBeanRandomValueInterface<String> {
+public class MockBeanRandomString extends MockBeanRandomValueAbstract<String> {
 
     private static final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
 
@@ -19,6 +19,11 @@ public class MockBeanRandomString implements MockBeanRandomValueInterface<String
         }
 
         return sb.toString();
+    }
+
+    @Override
+    protected Class<String> getRefClass() {
+        return String.class;
     }
 
 }

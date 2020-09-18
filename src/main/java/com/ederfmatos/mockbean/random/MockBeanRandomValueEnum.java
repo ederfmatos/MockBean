@@ -5,31 +5,26 @@ import com.ederfmatos.mockbean.random.types.*;
 import com.ederfmatos.mockbean.random.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 import java.util.stream.Stream;
 
 public enum MockBeanRandomValueEnum {
 
-    STRING(String.class, new MockBeanRandomString()),
-    INTEGER(Integer.class, new MockBeanRandomInteger()),
-    LOCAL_DATE(LocalDate.class, new MockBeanRandomLocalDate()),
-    BOOLEAN(Boolean.class, new MockBeanRandomBoolean()),
-    DOUBLE(Double.class, new MockBeanRandomDouble()),
-    FLOAT(Float.class, new MockBeanRandomFloat()),
-    LONG(Long.class, new MockBeanRandomLong()),
-    DATE(Date.class, new MockBeanRandomDate()),
-    CHAR(Character.class, new MockBeanRandomChar()),
-    LIST(List.class, new MockBeanRandomList()),
+    STRING(new MockBeanRandomString()),
+    INTEGER(new MockBeanRandomInteger()),
+    LOCAL_DATE(new MockBeanRandomLocalDate()),
+    BOOLEAN(new MockBeanRandomBoolean()),
+    DOUBLE(new MockBeanRandomDouble()),
+    FLOAT(new MockBeanRandomFloat()),
+    LONG(new MockBeanRandomLong()),
+    DATE(new MockBeanRandomDate()),
+    CHAR(new MockBeanRandomChar()),
+    LIST(new MockBeanRandomList()),
     ;
 
-    private final Class<?> refClass;
-    private final MockBeanRandomValueInterface<?> generator;
+    private final MockBeanRandomValueAbstract<?> generator;
 
-    MockBeanRandomValueEnum(Class<?> refClass, MockBeanRandomValueInterface<?> generator) {
-        this.refClass = refClass;
+    MockBeanRandomValueEnum(MockBeanRandomValueAbstract<?> generator) {
         this.generator = generator;
     }
 
@@ -47,16 +42,13 @@ public enum MockBeanRandomValueEnum {
 
         final Class<?> finalFieldClass = fieldClass;
         return Stream.of(MockBeanRandomValueEnum.values())
-                .filter(mockBeanRandomValueEnum -> finalFieldClass.getSimpleName().equalsIgnoreCase(mockBeanRandomValueEnum.getRefClass().getSimpleName()))
+                .map(MockBeanRandomValueEnum::getGenerator)
+                .filter(generator -> generator.isInstanceOf(finalFieldClass))
                 .findFirst()
-                .map(mockBeanRandomValueEnum -> mockBeanRandomValueEnum.getGenerator().getRandomValue(field)).orElse(null);
+                .map(generator -> generator.getRandomValue(field)).orElse(null);
     }
 
-    public Class<?> getRefClass() {
-        return refClass;
-    }
-
-    public MockBeanRandomValueInterface<?> getGenerator() {
+    public MockBeanRandomValueAbstract<?> getGenerator() {
         return generator;
     }
 

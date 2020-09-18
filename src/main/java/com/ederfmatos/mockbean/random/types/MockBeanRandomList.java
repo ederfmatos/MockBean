@@ -1,6 +1,6 @@
 package com.ederfmatos.mockbean.random.types;
 
-import com.ederfmatos.mockbean.random.MockBeanRandomValueInterface;
+import com.ederfmatos.mockbean.random.MockBeanRandomValueAbstract;
 import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
 
 import java.lang.reflect.Field;
@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class MockBeanRandomList implements MockBeanRandomValueInterface<List<?>> {
+public class MockBeanRandomList extends MockBeanRandomValueAbstract<List> {
 
     @Override
     public List<?> getRandomValue(Field field) {
@@ -20,9 +20,14 @@ public class MockBeanRandomList implements MockBeanRandomValueInterface<List<?>>
         Class<?> fieldType = (Class<?>) integerListType.getActualTypeArguments()[0];
 
         return IntStream.range(1, size)
-                .mapToObj(n -> MockBeanTypesUtils.getValueFromClass(fieldType))
+                .mapToObj(n -> getValueFromClass(fieldType))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    protected Class<List> getRefClass() {
+        return List.class;
     }
 
 }
