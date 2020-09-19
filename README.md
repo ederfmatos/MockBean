@@ -172,3 +172,4 @@ Esses são os tipos de dados cobertos pela biblioteca:
  - [X] Char
  - [X] List
  - [X] Set
+ - [X] Map

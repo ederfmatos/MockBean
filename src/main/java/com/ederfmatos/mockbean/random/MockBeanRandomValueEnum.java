@@ -20,6 +20,7 @@ public enum MockBeanRandomValueEnum {
     DATE(new MockBeanRandomDate()),
     CHAR(new MockBeanRandomChar()),
     LIST(new MockBeanRandomList()),
+    MAP(new MockBeanRandomMap()),
     ;
 
     private final MockBeanRandomValueAbstract<?> generator;

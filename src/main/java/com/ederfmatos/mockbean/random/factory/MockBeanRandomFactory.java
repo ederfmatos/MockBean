@@ -14,4 +14,8 @@ public class MockBeanRandomFactory {
         return random;
     }
 
+    public static int randomInt(int limit) {
+        return get().nextInt(limit) + 1;
+    }
+
 }
