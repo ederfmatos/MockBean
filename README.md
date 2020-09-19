@@ -92,24 +92,74 @@ MockBean.mockBean(Class<T>);
 MockBean.mock(Class<T>);
 ```
 
-Com uma instância da classe em mãos temos acesso à outros métodos da classe:
+### Métodos internos
 
+A partir do momento que temos uma instância da classe MockBean em mãos, temos acesso aos seguintes métodos:
+
+#### with
+
+O método "with" é utilizado para setar um valor específico para um atributo.<br>
+Ele recebe 2 parâmetros: <br>
+1° - String -  com o nome do atributo à ser setado <br>
+2° - Object -  com o valor do atributo <br>
+
+##### Exemplo
 ``` Java
-// With -> Recebe 2 parâmetros, o nome do atributo da classe, e um valor para ser colocado nesse atributo.
-MockBean.mockBean(Cliente.class)
-	.with("name", "Bill Gates");
-
-// Without -> Recebe o nome de um atributo que deseja ter o valor padrão de acordo com o tipo.
-MockBean.mockBean(Cliente.class)
-	.without("email");
-
-// Build -> Devolve uma instância da classe de acordo com as configurações passadas nos métodos anteriores
-Cliente cliente = MockBean.mockBean(Cliente.class)
-	.without("id")
+MockBean.mock(Cliente.class)
 	.with("name", "Bill Gates")
-	.with("email", "bill@gates.com")
-	.build();
+	.with("email", "java@java.com")
+        .with("phoneNumber", "1199665522");
 ```
+
+#### without
+
+O método "without" é utilizado para não setar um valor para um atributo, ou ao menos deixar o valor padrão.<br>
+Ele recebe quantos atributos você quiser passar, sendo os nomes dos atributos que você não deseja valor (varargs) <br>
+
+##### Exemplo
+``` Java
+MockBean.mock(Cliente.class)
+	.without("name", "phoneNumber", "password");
+```
+
+#### build
+
+O método "build" é utilizado para uma instância da classe de acordo com as configurações passadas nos métodos anteriores.
+
+##### Exemplo
+``` Java
+Cliente cliente = MockBean.mock(Cliente.class)
+	.without("name", "phoneNumber", "password")
+        .build();
+```
+
+Existem também uma sobrescrita do método "build" onde é possivel passar um número inteiro, esse método devolve uma lista com o número de itens passados por parâmetro
+##### Exemplo
+``` Java
+List<Cliente> clientes = MockBean.mock(Cliente.class)
+	.without("name")
+        .build(8);
+```
+
+#### json
+
+O método "json" assim como o método "build" é utilizado para uma instância da classe, porém ele devolve a instancia numa String com o formato json.
+
+##### Exemplo
+``` Java
+String clienteJson = MockBean.mock(Cliente.class)
+	.without("name", "phoneNumber", "password")
+        .json();
+```
+
+E também existe uma sobrescrita do método "json" onde é possivel passar um número inteiro para retornar uma lista no formato json
+##### Exemplo
+``` Java
+String clientes = MockBean.mock(Cliente.class)
+	.without("name")
+        .json(8);
+```
+ 
 
 ## Tipos de dados
 
@@ -124,3 +174,5 @@ Esses são os tipos de dados cobertos pela biblioteca:
  - [X] Long
  - [X] Date
  - [X] Char
+ - [X] List
+ - [X] Set
