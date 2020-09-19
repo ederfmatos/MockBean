@@ -1,5 +1,6 @@
 package com.ederfmatos.mockbean;
 
+import com.ederfmatos.mockbean.exception.MockBeanNoSuchFieldException;
 import com.ederfmatos.mockbean.random.MockBeanRandomValueEnum;
 import com.ederfmatos.mockbean.random.factory.MockBeanGsonFactory;
 
@@ -40,17 +41,11 @@ public class MockBean<B> {
     }
 
     public MockBean<B> with(String name, Object value) {
-        Field field = null;
-
         try {
-            field = refClass.getDeclaredField(name);
+            refClass.getDeclaredField(name);
             fieldValueMap.put(name, value);
         } catch (NoSuchFieldException e) {
-            throw new RuntimeException(String.format("Field \"%s\" not found", name));
-        } finally {
-            if (field != null) {
-                field.setAccessible(false);
-            }
+            throw new MockBeanNoSuchFieldException(String.format("Field \"%s\" not found", name));
         }
 
         return this;

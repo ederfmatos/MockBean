@@ -1,6 +1,7 @@
 package com.ederfmatos.mockbean;
 
 import com.ederfmatos.mockbean.bean.integer.TestClassInteger;
+import com.ederfmatos.mockbean.exception.MockBeanNoSuchFieldException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 import static com.ederfmatos.mockbean.assertions.MockBeanAssertions.assertJson;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThrows;
 
 public class MockBeanIntegerTest {
 
@@ -67,6 +69,14 @@ public class MockBeanIntegerTest {
                 .json(2);
 
         assertJson(testClassIntegerJson);
+    }
+
+    @Test
+    @DisplayName("Deve lançar um erro ao tentar setar valor em atributo não existente")
+    public void shouldBeThrowErrorOnSetUndeclaredField() {
+        assertThrows(MockBeanNoSuchFieldException.class, () -> MockBean.mock(TestClassInteger.class)
+                .with("anyName", 15)
+                .json(2));
     }
 
 }
