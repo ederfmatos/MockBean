@@ -3,16 +3,12 @@
   
   
 <p align="center">
- <a>
-        <img src="https://github.com/ederfmatos/MockBean/workflows/Java%20CI%20with%20Gradle/badge.svg"
-            alt="Stars">
-   </a>
-  <a>
-            <img alt="GitHub stars" src="https://img.shields.io/github/stars/ederfmatos/MockBean?style=social">
-   </a>
-<a>
+	<img src="https://github.com/ederfmatos/MockBean/workflows/Java%20CI%20with%20Gradle/badge.svg"
+	<img alt="GitHub stars" src="https://img.shields.io/github/stars/ederfmatos/MockBean?style=social">
 	<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ederfmatos/MockBean?style=social">
-</a>
+	<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/ederfmatos/MockBean">
+	<img alt="GitHub issues" src="https://img.shields.io/github/issues/ederfmatos/MockBean">
+	<img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/ederfmatos/MockBean">
 </p>
 
 Essa é uma biblioteca criada com o intuito de facilitar a criação de mocks em testes escritos com Java. 
