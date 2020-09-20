@@ -36,7 +36,7 @@ repositories {
 
 ``` gradle
 dependencies {
-  implementation 'com.github.ederfmatos:MockBean:1.0'
+  implementation 'com.github.ederfmatos:MockBean:1.0.2'
 }
 ```
 
@@ -57,7 +57,7 @@ dependencies {
 <dependency>
   <groupId>com.github.ederfmatos</groupId>
   <artifactId>MockBean</artifactId>
-  <version>1.0</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
