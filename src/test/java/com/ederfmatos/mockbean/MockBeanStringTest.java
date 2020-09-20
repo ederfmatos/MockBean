@@ -10,16 +10,16 @@ public class MockBeanStringTest {
 
     @Test
     @DisplayName("Deve realizar o mock de strings")
-    public void shouldBeMockInteger() {
-        TestClassString testClassInteger = MockBean.mock(TestClassString.class)
+    public void shouldBeMockStrings() {
+        TestClassString testClass = MockBean.mock(TestClassString.class)
                 .build();
 
-        assertThat(testClassInteger).isNotNull();
-        assertThat(testClassInteger.getCountry()).isNotEmpty();
-        assertThat(testClassInteger.getFirstName()).isNotEmpty();
-        assertThat(testClassInteger.getLastName()).isNotEmpty();
-        assertThat(testClassInteger.getName()).isNotEmpty();
-        assertThat(testClassInteger.getPhoneNumber()).isNotEmpty();
+        assertThat(testClass).isNotNull();
+        assertThat(testClass.getCountry()).isNotEmpty();
+        assertThat(testClass.getFirstName()).isNotEmpty();
+        assertThat(testClass.getLastName()).isNotEmpty();
+        assertThat(testClass.getName()).isNotEmpty();
+        assertThat(testClass.getPhoneNumber()).isNotEmpty();
     }
 
 }
