@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     testCompile("org.assertj:assertj-core:3.11.1")
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation('junit:junit:4.13')
     testCompileOnly 'junit:junit:4.12'
     testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.3.1'

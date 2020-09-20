@@ -1,9 +1,13 @@
 package com.ederfmatos.mockbean.random.types;
 
 import com.ederfmatos.mockbean.random.MockBeanRandomValueAbstract;
+import com.ederfmatos.mockbean.random.factory.MockBeanFakerFactory;
 import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
 
 import java.lang.reflect.Field;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MockBeanRandomString extends MockBeanRandomValueAbstract<String> {
 
@@ -11,14 +15,14 @@ public class MockBeanRandomString extends MockBeanRandomValueAbstract<String> {
 
     @Override
     public String getRandomValue(Field field) {
-        int count = MockBeanRandomFactory.get().nextInt(25) + 10;
+        String name = Optional.ofNullable(field)
+                .map(Field::getName)
+                .orElse("");
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < count; ++i) {
-            sb.append(ALPHABET.charAt(MockBeanRandomFactory.get().nextInt(ALPHABET.length())));
-        }
-
-        return sb.toString();
+        return Optional.ofNullable(MockBeanFakerFactory.getString(name))
+                .orElseGet(() -> IntStream.range(1, MockBeanRandomFactory.get().nextInt(25) + 10)
+                        .mapToObj(value -> String.valueOf(ALPHABET.charAt(MockBeanRandomFactory.get().nextInt(ALPHABET.length()))))
+                        .collect(Collectors.joining("")));
     }
 
     @Override
