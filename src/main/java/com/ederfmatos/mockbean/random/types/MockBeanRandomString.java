@@ -1,8 +1,8 @@
 package com.ederfmatos.mockbean.random.types;
 
 import com.ederfmatos.mockbean.random.MockBeanRandomValueAbstract;
-import com.ederfmatos.mockbean.random.factory.MockBeanFakerFactory;
-import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
+import com.ederfmatos.mockbean.random.singleton.MockBeanFakerSingleton;
+import com.ederfmatos.mockbean.random.singleton.MockBeanRandomSingleton;
 
 import java.lang.reflect.Field;
 import java.util.Optional;
@@ -19,9 +19,9 @@ public class MockBeanRandomString extends MockBeanRandomValueAbstract<String> {
                 .map(Field::getName)
                 .orElse("");
 
-        return Optional.ofNullable(MockBeanFakerFactory.getString(name))
-                .orElseGet(() -> IntStream.range(1, MockBeanRandomFactory.get().nextInt(25) + 10)
-                        .mapToObj(value -> String.valueOf(ALPHABET.charAt(MockBeanRandomFactory.get().nextInt(ALPHABET.length()))))
+        return Optional.ofNullable(MockBeanFakerSingleton.getString(name))
+                .orElseGet(() -> IntStream.range(1, MockBeanRandomSingleton.get().nextInt(25) + 10)
+                        .mapToObj(value -> String.valueOf(ALPHABET.charAt(MockBeanRandomSingleton.get().nextInt(ALPHABET.length()))))
                         .collect(Collectors.joining("")));
     }
 

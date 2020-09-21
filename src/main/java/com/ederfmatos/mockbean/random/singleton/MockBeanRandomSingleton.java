@@ -1,8 +1,8 @@
-package com.ederfmatos.mockbean.random.factory;
+package com.ederfmatos.mockbean.random.singleton;
 
 import java.util.Random;
 
-public class MockBeanRandomFactory {
+public class MockBeanRandomSingleton {
 
     private static Random random;
 

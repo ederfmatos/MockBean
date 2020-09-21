@@ -1,7 +1,7 @@
 package com.ederfmatos.mockbean.random.types;
 
 import com.ederfmatos.mockbean.random.MockBeanRandomValueAbstract;
-import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
+import com.ederfmatos.mockbean.random.singleton.MockBeanRandomSingleton;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -12,7 +12,7 @@ public class MockBeanRandomMap extends MockBeanRandomValueAbstract<Map> {
 
     @Override
     public Map<Object, Object> getRandomValue(Field field) {
-        int size = MockBeanRandomFactory.randomInt(15) + 1;
+        int size = MockBeanRandomSingleton.randomInt(15) + 1;
 
         ParameterizedType type = (ParameterizedType) field.getGenericType();
         Class<?> keyClass = (Class<?>) type.getActualTypeArguments()[0];

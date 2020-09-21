@@ -1,6 +1,6 @@
 package com.ederfmatos.mockbean.random;
 
-import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
+import com.ederfmatos.mockbean.random.singleton.MockBeanRandomSingleton;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public abstract class MockBeanRandomValueAbstract<T> {
                 .orElseGet(() -> {
                     if (refClass.isEnum()) {
                         Object[] enumConstants = refClass.getEnumConstants();
-                        return Arrays.asList(enumConstants).get(MockBeanRandomFactory.get().nextInt(enumConstants.length));
+                        return Arrays.asList(enumConstants).get(MockBeanRandomSingleton.get().nextInt(enumConstants.length));
                     }
 
                     return null;

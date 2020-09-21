@@ -1,7 +1,7 @@
 package com.ederfmatos.mockbean.random.types;
 
 import com.ederfmatos.mockbean.random.MockBeanRandomValueAbstract;
-import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
+import com.ederfmatos.mockbean.random.singleton.MockBeanRandomSingleton;
 
 import java.lang.reflect.Field;
 
@@ -11,7 +11,7 @@ public class MockBeanRandomChar extends MockBeanRandomValueAbstract<Character> {
 
     @Override
     public Character getRandomValue(Field field) {
-        return ALPHABET.charAt(MockBeanRandomFactory.get().nextInt(ALPHABET.length()));
+        return ALPHABET.charAt(MockBeanRandomSingleton.get().nextInt(ALPHABET.length()));
     }
 
     @Override

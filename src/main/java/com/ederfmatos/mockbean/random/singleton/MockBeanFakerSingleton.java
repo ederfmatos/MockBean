@@ -1,4 +1,4 @@
-package com.ederfmatos.mockbean.random.factory;
+package com.ederfmatos.mockbean.random.singleton;
 
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.StringUtils;
@@ -10,7 +10,7 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-public class MockBeanFakerFactory {
+public class MockBeanFakerSingleton {
 
     private static Map<Class<?>, Map<String, Supplier<Object>>> mapMethods;
 

@@ -1,6 +1,6 @@
 package com.ederfmatos.mockbean.random;
 
-import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
+import com.ederfmatos.mockbean.random.singleton.MockBeanRandomSingleton;
 import com.ederfmatos.mockbean.random.types.*;
 import com.ederfmatos.mockbean.random.utils.ReflectionUtils;
 
@@ -34,7 +34,7 @@ public enum MockBeanRandomValueEnum {
 
         if (fieldClass.isEnum()) {
             Object[] enumConstants = fieldClass.getEnumConstants();
-            return Arrays.asList(enumConstants).get(MockBeanRandomFactory.get().nextInt(enumConstants.length));
+            return Arrays.asList(enumConstants).get(MockBeanRandomSingleton.get().nextInt(enumConstants.length));
         }
 
         if (fieldClass.isPrimitive()) {

@@ -1,8 +1,8 @@
-package com.ederfmatos.mockbean.random.factory;
+package com.ederfmatos.mockbean.random.singleton;
 
 import com.google.gson.Gson;
 
-public class MockBeanGsonFactory {
+public class MockBeanGsonSingleton {
 
     private static Gson instance;
 

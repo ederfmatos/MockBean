@@ -1,12 +1,11 @@
 package com.ederfmatos.mockbean.random.types;
 
 import com.ederfmatos.mockbean.random.MockBeanRandomValueAbstract;
-import com.ederfmatos.mockbean.random.factory.MockBeanRandomFactory;
+import com.ederfmatos.mockbean.random.singleton.MockBeanRandomSingleton;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collector;
@@ -17,7 +16,7 @@ public class MockBeanRandomList extends MockBeanRandomValueAbstract<Iterable> {
 
     @Override
     public Iterable getRandomValue(Field field) {
-        int size = MockBeanRandomFactory.get().nextInt(15) + 2;
+        int size = MockBeanRandomSingleton.get().nextInt(15) + 2;
 
         ParameterizedType type = (ParameterizedType) field.getGenericType();
         Class<?> fieldType = (Class<?>) type.getActualTypeArguments()[0];

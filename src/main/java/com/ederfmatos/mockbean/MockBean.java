@@ -2,7 +2,7 @@ package com.ederfmatos.mockbean;
 
 import com.ederfmatos.mockbean.exception.MockBeanNoSuchFieldException;
 import com.ederfmatos.mockbean.random.MockBeanRandomValueEnum;
-import com.ederfmatos.mockbean.random.factory.MockBeanGsonFactory;
+import com.ederfmatos.mockbean.random.singleton.MockBeanGsonSingleton;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -63,11 +63,11 @@ public class MockBean<B> {
     }
 
     public String json() {
-        return MockBeanGsonFactory.get().toJson(build());
+        return MockBeanGsonSingleton.get().toJson(build());
     }
 
     public String json(int size) {
-        return MockBeanGsonFactory.get().toJson(build(size));
+        return MockBeanGsonSingleton.get().toJson(build(size));
     }
 
     public Optional<B> optional() {
