@@ -6,10 +6,7 @@ import com.ederfmatos.mockbean.random.factory.MockBeanGsonFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class MockBean<B> {
@@ -71,6 +68,10 @@ public class MockBean<B> {
 
     public String json(int size) {
         return MockBeanGsonFactory.get().toJson(build(size));
+    }
+
+    public Optional<B> optional() {
+        return Optional.ofNullable(createBean());
     }
 
     private B createBean() {
